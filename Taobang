@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tạo bảng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    #table-container {
+      margin-top: 20px;
+    }
+    
+    #table-container table {
+      border-collapse: collapse;
+    }
+    
+    #table-container table td {
+      border: 1px solid #333;
+      padding: 5px;
+    }
+    
+    #confirm-button,
+    #reset-button {
+      margin-top: 10px;
+    }
+  </style>
+  
+</head>
+<body>
+  <h1>Nhập thông số bảng</h1>
+  
+  <label for="rows-input">Số ô theo chiều dọc:</label>
+  <input type="number" id="rows-input">
+  
+  <label for="cols-input">Số ô theo chiều ngang:</label>
+  <input type="number" id="cols-input">
+  
+  <button id="confirm-button" onclick="createTable()">Tạo bảng</button>
+  <button id="reset-button" onclick="resetTable()">Reset</button>
+  
+  <div id="table-container"></div>
+  
+  <script>
+    function createTable() {
+      var rows = document.getElementById('rows-input').value; // Lấy giá trị số ô theo chiều dọc từ ô input
+      var cols = document.getElementById('cols-input').value; // Lấy giá trị số ô theo chiều ngang từ ô input
+      
+      if (rows > 0 && cols > 0) { // Kiểm tra xem số ô đã nhập có lớn hơn 0 không
+        var tableContainer = document.getElementById('table-container'); // Lấy phần tử chứa bảng
+        
+        // Xóa bảng hiện có (nếu có)
+        while (tableContainer.firstChild) {
+          tableContainer.removeChild(tableContainer.firstChild);
+        }
+        
+        var table = document.createElement('table'); // Tạo phần tử table
+        
+        for (var i = 0; i < rows; i++) {
+          var row = document.createElement('tr'); // Tạo phần tử row (dòng)
+          
+          for (var j = 0; j < cols; j++) {
+            var cell = document.createElement('td'); // Tạo phần tử cell (ô)
+            cell.textContent = 'Ô ' + (i + 1) + '-' + (j + 1); // Đặt nội dung cho ô
+            row.appendChild(cell); // Thêm ô vào dòng
+          }
+          
+          table.appendChild(row); // Thêm dòng vào bảng
+        }
+        
+        tableContainer.appendChild(table); // Thêm bảng vào phần tử chứa bảng
+      }
+    }
+    
+    function resetTable() {
+      document.getElementById('rows-input').value = ''; // Xóa giá trị ô input số ô theo chiều dọc
+      document.getElementById('cols-input').value = ''; // Xóa giá trị ô input số ô theo chiều ngang
+      
+      // Xóa bảng hiện có (nếu có)
+      var tableContainer = document.getElementById('table-container');
+      while (tableContainer.firstChild) {
+        tableContainer.removeChild(tableContainer.firstChild);
+      }
+    }
+  </script>
+</body>
+</html>
