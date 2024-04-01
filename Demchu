@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    .a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+    <title>Đếm nguyên âm và phụ âm</title>
+    <script>
+        function countVowelsConsonants() {
+            var input = document.getElementById('nameInput').value.toLowerCase();
+            var vowels = 0;
+            var consonants = 0;
+
+            for (var i = 0; i < input.length; i++) {
+                var letter = input[i];
+                if (/[aeiou]/.test(letter)) {
+                    vowels++;
+                } 
+                else if (/[a-z]/.test(letter)) {
+                    consonants++;
+                }
+            }
+            alert('Số nguyên âm: ' + vowels + '\nSố phụ âm: ' + consonants);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Đếm số nguyên âm và phụ âm</h1>
+        <input type="text" id="nameInput" placeholder="Nhập họ tên của bạn">
+        <button onclick="countVowelsConsonants()">Enter</button>
+    </div>
+</body>
+</html>
